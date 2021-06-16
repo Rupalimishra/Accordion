@@ -1,0 +1,39 @@
+
+.main-component {
+    padding: 45px;
+}
+.Accordion {
+    margin: 0;
+    padding: 0;
+    border: 2px solid hsl(0, 0%, 82%);
+    border-radius: 7px;
+    width: 20em;
+}
+.Accordion-trigger {
+   padding: 1em 1.5em;
+   text-align: left; 
+}
+.Accordion-button{
+    border-style: none;
+    background: none;
+    font-size: 1rem;
+    padding: 18px;
+}
+.input-style{
+    border: 1px solid hsl(0, 0%, 62%);
+    border-radius: 0.3em;
+    display: block;
+    font-size: inherit;
+    padding: 0.3em 0.5em;
+}
+
+.font-style{
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: sans-serif;
+}
+.line-style{
+    width: 109%;
+    float: right;
+}
+
