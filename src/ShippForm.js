@@ -1,14 +1,13 @@
-
 import React from 'react';
 import AddForm from './AddForm';
 import './Pform.css';
 
-const BillForm = () => {
+const ShippForm = () => {
     return (
         <div>
-            <div id="sect2"
+            <div id="sect3"
                 role="region"
-                aria-labelledby="accordion2id">
+                aria-labelledby="accordion3id">
                 <AddForm />
             </div>
 
@@ -16,4 +15,4 @@ const BillForm = () => {
     )
 }
 
-export default BillForm;
+export default ShippForm;

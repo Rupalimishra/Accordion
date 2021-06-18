@@ -17,7 +17,7 @@ const Form = () => {
                             <label for="txtEmail" className="font-style">Email:</label>
                             <span aria-hidden="true">*</span>
                             <br />
-                            <input className="input-style" aria-required="true" id="txtEmail" type="email" />
+                            <input className="input-style" aria-required="true" id="txtEmail" type="text" />
                             <br />
                             <label for="txtPhone" className="font-style">Phone:</label>
                             <br />
