@@ -15,34 +15,32 @@ class Pform extends React.Component {
     showBillAdd: false,
 
   };
-  onButtonClickHandler = () => {
 
-    this.setState({
-      showMessage: true,
-      showBillAdd: false,
-      showAddress: false
-    });
-  };
-
-  onBillingClickHandler = () => {
-
-    this.setState({
-      showBillAdd: true,
-      showMessage: false,
-      showAddress: false
-    });
-
+  onButtonClickHandler(key) {
+    
+    console.log(key);
+    if (key === 'showMessage') {
+      this.setState({
+        showMessage: true,
+        showBillAdd: false,
+        showAddress: false
+      });
+    };
+    if (key === 'showBillAdd') {
+      this.setState({
+        showBillAdd: true,
+        showMessage: false,
+        showAddress: false
+      });
+    }
+    if (key === 'showAddress') {
+      this.setState({
+        showAddress: true,
+        showBillAdd: false,
+        showMessage: false
+      });
+    }
   }
-
-  onShippingClickHandler = () => {
-
-    this.setState({
-      showAddress: true,
-      showBillAdd: false,
-      showMessage: false
-    });
-
-  };
 
   render() {
     const { showMessage, showBillAdd, showAddress } = this.state;
@@ -55,7 +53,8 @@ class Pform extends React.Component {
             className="Accordion-button"
             aria-controls="sect1"
             id="accordion1id"
-            onClick={this.onButtonClickHandler}>Personal Information</button>
+            onClick={this.onButtonClickHandler.bind(this, 'showMessage')}
+          >Personal Information</button>
           <span className="Accordion-icon"><FaAngleDown /></span>
           <hr className="line-style"></hr>
           {showMessage && <Form />}
@@ -67,7 +66,8 @@ class Pform extends React.Component {
             aria-expanded={showBillAdd}
             id="accordion2id"
             className="Accordion-button"
-            onClick={this.onBillingClickHandler} >Billing Address</button>
+            onClick={this.onButtonClickHandler.bind(this, 'showBillAdd')}
+          >Billing Address</button>
           <span className="Accordion-icon"><FaAngleDown /></span>
           <hr className="line-style"></hr>
           {showBillAdd && <BillForm />}
@@ -81,7 +81,8 @@ class Pform extends React.Component {
             aria-controls="sect3"
             id="accordion3id"
             className="Accordion-button"
-            onClick={this.onShippingClickHandler}>Shipping Address</button>
+            onClick={this.onButtonClickHandler.bind(this, 'showAddress')}
+          >Shipping Address</button>
           <span className="Accordion-icon"><FaAngleDown /></span>
           <hr className="line-style"></hr>
           {showAddress && <ShippForm />}
@@ -92,5 +93,4 @@ class Pform extends React.Component {
     );
   }
 }
-
 export default Pform;
