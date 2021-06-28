@@ -1,96 +1,85 @@
+
 import React from "react";
 import { FaAngleDown } from "react-icons/fa";
 import './Pform.css';
 import BillForm from "./BillForm";
 import Form from "./Form";
 import ShippForm from "./ShippForm";
-
-
-
+import ButtonComponent from "./ButtonComponent";
 
 class Pform extends React.Component {
   state = {
-    showMessage: true,
-    showAddress: false,
-    showBillAdd: false,
+    ganesha: [
+      {
+        "id": "accordion1id",
+        "buttonType": "showMessage",
+        "name": "Personal Information",
+        "className": "Accordion-button",
+        "flagValue": true,
+        "aria": "sect1"
 
+      },
+      {
+        "id": "accordion2id",
+        "buttonType": "showBillAdd",
+        "name": "Billing Address",
+        "className": "Accordion-button",
+        "flagValue": false,
+        "aria": "sect2"
+      },
+      {
+        "id": "accordion3id",
+        "buttonType": "showAddress",
+        "name": "Shipping Address",
+        "className": "Accordion-button",
+        "flagValue": false,
+        "aria": "sect3"
+      },
+    ]
   };
 
-  onButtonClickHandler(key) {
-    
-    console.log(key);
-    if (key === 'showMessage') {
-      this.setState({
-        showMessage: true,
-        showBillAdd: false,
-        showAddress: false
-      });
-    };
-    if (key === 'showBillAdd') {
-      this.setState({
-        showBillAdd: true,
-        showMessage: false,
-        showAddress: false
-      });
-    }
-    if (key === 'showAddress') {
-      this.setState({
-        showAddress: true,
-        showBillAdd: false,
-        showMessage: false
-      });
-    }
+  getValue = (buttonType) => {
+    let temp = this.state.ganesha;
+    temp.forEach(element => {
+      if (buttonType === element.buttonType) {
+        element.flagValue = true;;
+      } else {
+        element.flagValue = false;
+      }
+    });
+    this.setState({ ganesha: temp });
   }
 
   render() {
-    const { showMessage, showBillAdd, showAddress } = this.state;
     return (
-      <div id="accordionGroup" className="Accordion">
+      <div id="accordiongroup" className="Accordion">
         <div className="Accordion-trigger">
-
-          <button
-            aria-expanded={showMessage}
-            className="Accordion-button"
-            aria-controls="sect1"
-            id="accordion1id"
-            onClick={this.onButtonClickHandler.bind(this, 'showMessage')}
-          >Personal Information</button>
-          <span className="Accordion-icon"><FaAngleDown /></span>
-          <hr className="line-style"></hr>
-          {showMessage && <Form />}
-        </div>
-
-        <div className="Accordion-trigger" >
-
-          <button aria-controls="sect2"
-            aria-expanded={showBillAdd}
-            id="accordion2id"
-            className="Accordion-button"
-            onClick={this.onButtonClickHandler.bind(this, 'showBillAdd')}
-          >Billing Address</button>
-          <span className="Accordion-icon"><FaAngleDown /></span>
-          <hr className="line-style"></hr>
-          {showBillAdd && <BillForm />}
-
-        </div>
-        <br />
-        <div className="Accordion-trigger">
-
-          <button
-            aria-expanded={showAddress}
-            aria-controls="sect3"
-            id="accordion3id"
-            className="Accordion-button"
-            onClick={this.onButtonClickHandler.bind(this, 'showAddress')}
-          >Shipping Address</button>
-          <span className="Accordion-icon"><FaAngleDown /></span>
-          <hr className="line-style"></hr>
-          {showAddress && <ShippForm />}
+          {
+            this.state.ganesha.map((el, index) => {
+              return (
+                <div key={index}>
+                  <ButtonComponent
+                    flagValue={el.flagValue}
+                    className={el.className}
+                    aria={el.aria}
+                    getValue={this.getValue}
+                    buttonType={el.buttonType}
+                    name={el.name}
+                  />
+                  <span className="Accordion-icon"><FaAngleDown /></span>
+                  <hr className="line-style"></hr>
+                  {el.buttonType === 'showMessage' && el.flagValue && <Form />}
+                  {el.buttonType === 'showBillAdd' && el.flagValue && <BillForm />}
+                  {el.buttonType === 'showAddress' && el.flagValue && <ShippForm />}
+                </div>
+              )
+            })
+          }
         </div>
 
       </div>
-
-    );
+    )
   }
 }
+
 export default Pform;

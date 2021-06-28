@@ -18,7 +18,7 @@ const AddForm = () => {
                         <br />
                         <input className="input-style" id="txtCity" type="text" />
                         <br />
-                        <label for="txtState">State:</label>
+                        <label  className="font-style" for="txtState">State:</label>
                         <br />
                         <input className="font-style" className="input-style" id="txtState" type="text" />
                         <br />
